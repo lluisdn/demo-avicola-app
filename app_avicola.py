@@ -47,31 +47,31 @@ if modo_vista == "📱 Vista Client":
     catalog = {
         "🥩 Carns Fresques i Talls": [
             {
-                "id": "pollastre_groc",
-                "nom": "Pollastre Groc Català",
+                "id": "entrecot_vedella",
+                "nom": "Entrecot de Vedella",
                 "preu": 9.50,
                 "unitat": "kg",
-                "step": 0.5,
-                "desc": "Pollastre de creixement lent, carn ferm i saborosa ideal per fer al forn o guisat.",
-                "img": "https://www.avicolaserlluis.com/images/gras%20i%20magre.jpg"  # Imatge real de la seva web
+                "step": 0.1,
+                "desc": "Descripcio ...",
+                "img": "https://www.avicolaserlluis.com/images/entrecot.jpg" 
             },
             {
-                "id": "pit_indi",
-                "nom": "Pit de Gall d'Indi Tallat",
+                "id": "llaminera_porc",
+                "nom": "Llaminera de Porc",
                 "preu": 11.20,
                 "unitat": "kg",
-                "step": 0.5,
+                "step": 0.1,
                 "desc": "Tallat prim per fer a la planxa, molt baix en greix i proteïna d'alta qualitat.",
-                "img": "https://via.placeholder.com/150/f0d3b7/333333?text=Gall+d'Indi"
+                "img": "https://www.avicolaserlluis.com/images/llaminera.jpg"
             },
             {
-                "id": "conill_fresc",
-                "nom": "Conill de Granja Tallat",
+                "id": "cuixetes_pollastre",
+                "nom": "Cuixetes de Pollastre",
                 "preu": 10.80,
                 "unitat": "kg",
-                "step": 0.5,
+                "step": 0.1,
                 "desc": "Trossos ideals per a paelles o guisats amb xocolata i fons d'all.",
-                "img": "https://via.placeholder.com/150/d1b89d/333333?text=Conill"
+                "img": "https://www.avicolaserlluis.com/images/cuixes%20pollastre.jpg"
             }
         ],
         "🧆 Plats Cuinats": [
