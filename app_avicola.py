@@ -86,51 +86,51 @@ if modo_vista == "📱 Vista Client":
                 
             },
             {
-                "id": "hamb_alberginia",
-                "nom": "Hamburguesa d'Albergínia i Formatge",
-                "preu": 1.50,
+                "id": "rulo_espinacs",
+                "nom": "Espinacs amb rul.lo de cabra",
+                "preu": 4.50,
                 "unitat": "ud",
                 "step": 1.0,
                 "desc": "Elaboració pròpia diària amb verdura fresca i formatge d'ovella.",
-                "img": "https://via.placeholder.com/150/7a5265/ffffff?text=Hamburguesa"
+                "img": "https://www.avicolaserlluis.com/images/espinacs%20amb%20rulo%20cabra.jpg"
             },
             {
-                "id": "croquetes_rostit",
-                "nom": "Croquetes Casolanes de Rostit",
-                "preu": 0.80,
-                "unitat": "ud",
-                "step": 1.0,
+                "id": "fricando_vedella",
+                "nom": "Fricando de vedella amb salsa",
+                "preu": 8.80,
+                "unitat": "kg",
+                "step": 0.100,
                 "desc": "Massa cremosa feta amb el nostre rostit tradicional de festa major.",
-                "img": "https://via.placeholder.com/150/d19c5c/ffffff?text=Croquetes"
+                "img": "https://www.avicolaserlluis.com/images/fricando%20de%20vedella%20amb%20salsa.jpg"
             },
             {
-                "id": "pollastre_ast",
-                "nom": "Pollastre a l'Ast amb Patates",
-                "preu": 12.50,
-                "unitat": "ud",
-                "step": 1.0,
+                "id": "mandonguilles",
+                "nom": "Mandonguilles amb salsa",
+                "preu": 9.50,
+                "unitat": "kg",
+                "step": 0.100,
                 "desc": "Rostit lentament amb herbes aromàtiques i ració de patates inclosa.",
-                "img": "https://via.placeholder.com/150/b5651d/ffffff?text=Pollastre+Ast"
+                "img": "https://www.avicolaserlluis.com/images/mandonguilles%20amb%20salsa.jpg"
             }
         ],
-        "🥓 Embotits i Formatges": [
+        "🥓 Xarcuteria": [
             {
-                "id": "pernil_canaria",
-                "nom": "Pernil Cuit Extra a la Canària",
+                "id": "llonganissa_iberica",
+                "nom": "Llonganisa Ibèrica",
                 "preu": 18.50,
                 "unitat": "kg",
                 "step": 0.1,
                 "desc": "Tallat prim per a sandvitxos o aperitius, baix en sal.",
-                "img": "https://via.placeholder.com/150/e08b8b/ffffff?text=Pernil+Cuit"
+                "img": "https://www.avicolaserlluis.com/images/llonganissa%20iberica.jpg"
             },
             {
-                "id": "botifarra_ou",
-                "nom": "Botifarra d'Ou Artesana",
+                "id": "catalana_trufada",
+                "nom": "Catalana trufada",
                 "preu": 13.20,
                 "unitat": "kg",
-                "step": 0.2,
+                "step": 0.1,
                 "desc": "Recepta tradicional de l'obrador, ideal per a taules d'embotits.",
-                "img": "https://via.placeholder.com/150/e6bf73/333333?text=Botifarra+Ou"
+                "img": "https://www.avicolaserlluis.com/images/catalana%20trufada.jpg"
             }
         ]
     }
