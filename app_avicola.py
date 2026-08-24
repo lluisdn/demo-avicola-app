@@ -14,7 +14,7 @@ BOTIGUES = [
     "Av. Jacquard, 38"
 ]
 
-# Inicialització del sistema de persistència de comandes a la sessió
+# Inicialització corregida (format d'items homogeni)
 if "orders" not in st.session_state:
     st.session_state.orders = [
         {
@@ -39,14 +39,10 @@ if "orders" not in st.session_state:
 st.title("🍗 Avícola Serlluis")
 st.caption("Sistema Digital d'Encàrrecs Online i Control de Producció per a l'Obrador")
 
-# Selector de Vista per a la Demo
 modo_vista = st.radio("🔄 Canvia de vista per a la demo:", ["📱 Vista Client", "👨‍🍳 Vista Botiga"], horizontal=True)
 
 st.divider()
 
-# ==========================================
-# VISTA 1: CLIENT (ENCÀRRECS ONLINE)
-# ==========================================
 if modo_vista == "📱 Vista Client":
     st.header("🛒 Fes el teu encàrrec i estalvia't les cues")
     st.write("Tria els teus productes, selecciona la botiga i l'hora de recollida, i tindrem la comanda a punt.")
@@ -70,7 +66,7 @@ if modo_vista == "📱 Vista Client":
                 "preu": 11.20,
                 "unitat": "kg",
                 "step": 0.1,
-                "desc": "Baix en greix i proteïna d'alta qualitat.",
+                "desc": "Tallat prim per fer a la planxa, molt baix en greix i proteïna d'alta qualitat.",
                 "img": "https://www.avicolaserlluis.com/images/llaminera.jpg"
             },
             {
@@ -206,7 +202,7 @@ if modo_vista == "📱 Vista Client":
         with col_c2:
             data_rec = st.date_input("Data de recollida", min_value=date.today())
             hora_rec = st.selectbox("Hora aproximada de recollida", ["09:30", "10:30", "11:30", "12:30", "13:30", "17:30", "18:30", "19:30"])
-            obs_client = st.text_area("Indicacions especials per la botiga", placeholder="Ex: Vindra el meu fill a recollir-ho...")
+            obs_client = st.text_area("Indicacions especials pel tallador/obrador", placeholder="Ex: El pollastre a octaus, tallat ben prim...")
 
         st.subheader("3. Confirmació i Pagament")
         st.info("💡 **Integració de pagament pròxima:** Aquest pas s'enllaçarà directament amb Stripe / Redsys per a pagament amb targeta o Bizum.")
@@ -242,9 +238,7 @@ else:
     if not st.session_state.orders:
         st.info("No hi ha comandes registrades de moment.")
     else:
-        # Filtre per botiga
         botiga_filtre = st.selectbox("🔍 Filtrar comandes per botiga:", ["Totes"] + BOTIGUES)
-        
         comandes_filtrades = st.session_state.orders if botiga_filtre == "Totes" else [o for o in st.session_state.orders if o.get('botiga') == botiga_filtre]
 
         col_m1, col_m2, col_m3 = st.columns(3)
@@ -259,18 +253,23 @@ else:
 
         st.divider()
 
-        # Resum de producció consolidat i exacte
         st.subheader("📋 Resum Consolidat de Producció (Totals a Tallar i Plegar)")
         
         totals_produccio = {}
         for order in comandes_filtrades:
-            for item in order['items']:
-                clau = f"{item['nom']} ({item['unitat']})"
-                totals_produccio[clau] = totals_produccio.get(clau, 0.0) + item['cant']
+            # Si la comanda ve en el format nou (llista de diccionaris)
+            if isinstance(order['items'], list):
+                for item in order['items']:
+                    clau = f"{item['nom']} ({item['unitat']})"
+                    totals_produccio[clau] = totals_produccio.get(clau, 0.0) + item['cant']
+            # Control de seguretat per si hi ha comandes en el format antic (diccionari simple)
+            elif isinstance(order['items'], dict):
+                for nom, val in order['items'].items():
+                    totals_produccio[nom] = totals_produccio.get(nom, "")
 
         if totals_produccio:
             df_prod = pd.DataFrame([
-                {"Producte": k, "Quantitat Total Necessària": f"{v:.1f}" if "kg" in k else f"{int(v)}"} 
+                {"Producte": k, "Quantitat Total Necessària": f"{v:.1f}" if isinstance(v, float) and "kg" in k else f"{v}"} 
                 for k, v in totals_produccio.items()
             ])
             st.dataframe(df_prod, use_container_width=True, hide_index=True)
@@ -294,11 +293,15 @@ else:
                 
                 with c2:
                     st.write("**Detall de l'encàrrec:**")
-                    for item in order['items']:
-                        st.write(f"- {item['nom']}: **{item['cant']} {item['unitat']}**")
+                    if isinstance(order['items'], list):
+                        for item in order['items']:
+                            st.write(f"- {item['nom']}: **{item['cant']} {item['unitat']}**")
+                    elif isinstance(order['items'], dict):
+                        for k, v in order['items'].items():
+                            st.write(f"- {k}: **{v}**")
+                            
                     st.write(f"**Total Pagat:** `{order['total']:.2f} €` ✅")
 
-                # Cerca de l'índex real a la sessió global per actualitzar l'estat
                 real_idx = st.session_state.orders.index(order)
                 nou_estat = st.selectbox(
                     "Actualitzar estat de la comanda:",
