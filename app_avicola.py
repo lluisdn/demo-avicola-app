@@ -46,7 +46,7 @@ if modo_vista == "📱 Vista Client (Encàrrecs Online)":
     with col_prod1:
         st.markdown("### 🐔 Aves Fresques i Talls")
         cant_pollastre = st.number_input("Polastre Groc Català (€9.50/kg)", min_value=0.0, max_value=10.0, step=0.5, format="%.1f")
-        cant_gall d'indi = st.number_input("Pit de Gall d'Indi Tallat (€11.20/kg)", min_value=0.0, max_value=10.0, step=0.5, format="%.1f")
+        cant_gall_dindi = st.number_input("Pit de Gall d'Indi Tallat (€11.20/kg)", min_value=0.0, max_value=10.0, step=0.5, format="%.1f")
         cant_farcit = st.number_input("Rodo de Gall d'Indi Farcit Tradicional (€14.80/kg)", min_value=0.0, max_value=10.0, step=0.5, format="%.1f")
 
     with col_prod2:
@@ -56,7 +56,7 @@ if modo_vista == "📱 Vista Client (Encàrrecs Online)":
         cant_ast = st.number_input("Polastre a l'Ast Rostic amb Patates (€12.50/ud)", min_value=0, max_value=5, step=1)
 
     # Càlcul del total
-    total_comanda = (cant_pollastre * 9.50) + (cant_gall d'indi * 11.20) + (cant_farcit * 14.80) + (cant_hamb * 1.50) + (cant_croquetes * 0.80) + (cant_ast * 12.50)
+    total_comanda = (cant_pollastre * 9.50) + (cant_gall_dindi * 11.20) + (cant_farcit * 14.80) + (cant_hamb * 1.50) + (cant_croquetes * 0.80) + (cant_ast * 12.50)
 
     st.markdown(f"### 💰 **Total Encàrrec:** `{total_comanda:.2f} €`")
 
@@ -83,7 +83,7 @@ if modo_vista == "📱 Vista Client (Encàrrecs Online)":
                 # Creació del resum d'ítems seleccionats
                 items_dict = {}
                 if cant_pollastre > 0: items_dict["Polastre Groc Català (kg)"] = cant_pollastre
-                if cant_gall d'indi > 0: items_dict["Pit de Gall d'Indi (kg)"] = cant_gall d'indi
+                if cant_gall_dindi > 0: items_dict["Pit de Gall d'Indi (kg)"] = cant_gall_dindi
                 if cant_farcit > 0: items_dict["Rodó Farcit (kg)"] = cant_farcit
                 if cant_hamb > 0: items_dict["Hamburgueses Albergínia (ud)"] = cant_hamb
                 if cant_croquetes > 0: items_dict["Croquetes Rostit (ud)"] = cant_croquetes
