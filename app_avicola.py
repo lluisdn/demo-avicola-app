@@ -206,7 +206,7 @@ if modo_vista == "📱 Vista Client":
         with col_c2:
             data_rec = st.date_input("Data de recollida", min_value=date.today())
             hora_rec = st.selectbox("Hora aproximada de recollida", ["09:30", "10:30", "11:30", "12:30", "13:30", "17:30", "18:30", "19:30"])
-            obs_client = st.text_area("Indicacions especials pel tallador/obrador", placeholder="Ex: El pollastre a octaus, tallat ben prim...")
+            obs_client = st.text_area("Indicacions especials per la botiga", placeholder="Ex: Vindra el meu fill a recollir-ho...")
 
         st.subheader("3. Confirmació i Pagament")
         st.info("💡 **Integració de pagament pròxima:** Aquest pas s'enllaçarà directament amb Stripe / Redsys per a pagament amb targeta o Bizum.")
