@@ -78,11 +78,11 @@ if modo_vista == "📱 Vista Client":
             {
                 "id": "ensaladilla",
                 "nom": "Ensaladilla",
-                "preu": 14.80,
-                "unitat": "kg",
-                "step": 1,
+                "preu": 5,
+                "unitat": "ud",
+                "step": 1.0,
                 "desc": "Farcit de prunes, pinyons i carn picada. A punt per enfornar.",
-                "img": "hhttps://www.avicolaserlluis.com/images/ensaladilla.jpg"
+                "img": "https://www.avicolaserlluis.com/images/ensaladilla.jpg"
                 
             },
             {
