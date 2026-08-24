@@ -34,7 +34,7 @@ st.divider()
 # ==========================================
 # VISTA 1: CLIENT (ENCÀRRECS ONLINE)
 # ==========================================
-if modo_vista == "📱 Vista Client (Encàrrecs Online)":
+if modo_vista == "📱 Vista Client":
     st.header("🛒 Fes el teu encàrrec i estalvia't les cues")
     st.write("Tria els teus productes, selecciona l'hora de recollida i nosaltres tindrem la comanda a punt.")
 
