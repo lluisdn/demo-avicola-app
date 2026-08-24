@@ -137,6 +137,7 @@ if modo_vista == "📱 Vista Client":
     # Diccionari per guardar les seleccions de quantitat de l'usuari
     selected_quantities = {}
 
+    
     # Renderitzat de categories en desplegables (Accordion UX per a mòbils)
     for category_name, products in catalog.items():
         with st.expander(category_name, expanded=False):
@@ -145,15 +146,18 @@ if modo_vista == "📱 Vista Client":
                     col_img, col_info = st.columns([1, 2])
                     
                     with col_img:
-                        # Imatge optimitzada sense opció de zoom
-                        st.image(prod["img"], use_column_width=True)
+                        # Intenta carregar la imatge real; si falla la URL o el servidor bloqueja, mostra un placeholder per evitar el crash
+                        try:
+                            st.image(prod["img"], use_container_width=True)
+                        except Exception:
+                            st.image("https://placehold.co/150x150/e0e0e0/333333?text=Sense+Imatge", use_container_width=True)
                     
                     with col_info:
                         st.markdown(f"**{prod['nom']}**")
                         st.caption(prod["desc"])
                         st.markdown(f"**{prod['preu']:.2f} €** / {prod['unitat']}")
                         
-                        # Selector adaptat al tipus d'unitat (kg decimal o unitat entera)
+                        # Selector adaptat al tipus d'unitat
                         if prod["unitat"] == "kg":
                             cant = st.number_input(
                                 f"Quantitat ({prod['unitat']}):",
@@ -177,6 +181,7 @@ if modo_vista == "📱 Vista Client":
                             "preu": prod["preu"],
                             "unitat": prod["unitat"]
                         }
+
 
     # Càlcul automàtic del total
     total_comanda = sum(
