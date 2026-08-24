@@ -3,7 +3,7 @@ import pandas as pd
 from datetime import datetime, date, time
 
 # Configuració de la pàgina
-st.set_page_config(page_title="Avícola Sant Lluís — Encàrrecs", page_icon="🍗", layout="wide")
+st.set_page_config(page_title="Avícola Serlluis — Encàrrecs", page_icon="🍗", layout="wide")
 
 # Inicialització del sistema de persistència de comandes a la sessió (Simulació de Base de Dades)
 if "orders" not in st.session_state:
@@ -23,11 +23,11 @@ if "orders" not in st.session_state:
     ]
 
 # Estils visual de la capçalera
-st.title("🍗 Avícola Sant Lluís — Des de 1968")
+st.title("🍗 Avícola Serlluis")
 st.caption("Sistema Digital d'Encàrrecs Online i Control de Producció per a l'Obrador")
 
 # Selector de Vista per a la Demo
-modo_vista = st.radio("🔄 Canvia de vista per a la demo:", ["📱 Vista Client (Encàrrecs Online)", "👨‍🍳 Vista Botiga / Obrador (Recepció de Comandes)"], horizontal=True)
+modo_vista = st.radio("🔄 Canvia de vista per a la demo:", ["📱 Vista Client", "👨‍🍳 Vista Botiga "], horizontal=True)
 
 st.divider()
 
@@ -36,27 +36,152 @@ st.divider()
 # ==========================================
 if modo_vista == "📱 Vista Client (Encàrrecs Online)":
     st.header("🛒 Fes el teu encàrrec i estalvia't les cues")
-    st.write("Tria els teus productes frescos o elaborats, selecciona l'hora de recollida i nosaltres tindrem la comanda a punt.")
+    st.write("Tria els teus productes, selecciona l'hora de recollida i nosaltres tindrem la comanda a punt.")
 
-    # Catàleg de productes
+# Catàleg de productes estructurat per categories i optimitzat per a mòbil
     st.subheader("1. Selecciona els teus productes")
-    
-    col_prod1, col_prod2 = st.columns(2)
-    
-    with col_prod1:
-        st.markdown("### 🐔 Aves Fresques i Talls")
-        cant_pollastre = st.number_input("Polastre Groc Català (€9.50/kg)", min_value=0.0, max_value=10.0, step=0.5, format="%.1f")
-        cant_gall_dindi = st.number_input("Pit de Gall d'Indi Tallat (€11.20/kg)", min_value=0.0, max_value=10.0, step=0.5, format="%.1f")
-        cant_farcit = st.number_input("Rodo de Gall d'Indi Farcit Tradicional (€14.80/kg)", min_value=0.0, max_value=10.0, step=0.5, format="%.1f")
 
-    with col_prod2:
-        st.markdown("### 🧆 Elaborats d'Obrador i Cuinats")
-        cant_hamb = st.number_input("Hamburguesa Artensanal d'Albergínia i Formatge (€1.50/ud)", min_value=0, max_value=20, step=1)
-        cant_croquetes = st.number_input("Croquetes Casolanes de Rostit (€0.80/ud)", min_value=0, max_value=30, step=2)
-        cant_ast = st.number_input("Polastre a l'Ast Rostic amb Patates (€12.50/ud)", min_value=0, max_value=5, step=1)
+    # Estructura de dades del catàleg
+    # NOTA: Per utilitzar imatges reals, canvia la URL 'https://via.placeholder.com/...' 
+    # per la ruta local de la imatge (ex: "assets/pollastre.jpg") o un enllaç direct d'internet.
+    catalog = {
+        "🥩 Carns Fresques i Talls": [
+            {
+                "id": "pollastre_groc",
+                "nom": "Pollastre Groc Català",
+                "preu": 9.50,
+                "unitat": "kg",
+                "step": 0.5,
+                "desc": "Pollastre de creixement lent, carn ferm i saborosa ideal per fer al forn o guisat.",
+                "img": "https://via.placeholder.com/150/e6c894/333333?text=Pollastre"
+            },
+            {
+                "id": "pit_indi",
+                "nom": "Pit de Gall d'Indi Tallat",
+                "preu": 11.20,
+                "unitat": "kg",
+                "step": 0.5,
+                "desc": "Tallat prim per fer a la planxa, molt baix en greix i proteïna d'alta qualitat.",
+                "img": "https://via.placeholder.com/150/f0d3b7/333333?text=Gall+d'Indi"
+            },
+            {
+                "id": "conill_fresc",
+                "nom": "Conill de Granja Tallat",
+                "preu": 10.80,
+                "unitat": "kg",
+                "step": 0.5,
+                "desc": "Trossos ideals per a paelles o guisats amb xocolata i fons d'all.",
+                "img": "https://via.placeholder.com/150/d1b89d/333333?text=Conill"
+            }
+        ],
+        "🧆 Elaborats i Menjar Preparat": [
+            {
+                "id": "rodo_farcit",
+                "nom": "Rodó de Gall d'Indi Farcit Tradicional",
+                "preu": 14.80,
+                "unitat": "kg",
+                "step": 0.5,
+                "desc": "Farcit de prunes, pinyons i carn picada. A punt per enfornar.",
+                "img": "https://via.placeholder.com/150/c88e68/ffffff?text=Rodo+Farcit"
+            },
+            {
+                "id": "hamb_alberginia",
+                "nom": "Hamburguesa d'Albergínia i Formatge",
+                "preu": 1.50,
+                "unitat": "ud",
+                "step": 1.0,
+                "desc": "Elaboració pròpia diària amb verdura fresca i formatge d'ovella.",
+                "img": "https://via.placeholder.com/150/7a5265/ffffff?text=Hamburguesa"
+            },
+            {
+                "id": "croquetes_rostit",
+                "nom": "Croquetes Casolanes de Rostit",
+                "preu": 0.80,
+                "unitat": "ud",
+                "step": 1.0,
+                "desc": "Massa cremosa feta amb el nostre rostit tradicional de festa major.",
+                "img": "https://via.placeholder.com/150/d19c5c/ffffff?text=Croquetes"
+            },
+            {
+                "id": "pollastre_ast",
+                "nom": "Pollastre a l'Ast amb Patates",
+                "preu": 12.50,
+                "unitat": "ud",
+                "step": 1.0,
+                "desc": "Rostit lentament amb herbes aromàtiques i ració de patates inclosa.",
+                "img": "https://via.placeholder.com/150/b5651d/ffffff?text=Pollastre+Ast"
+            }
+        ],
+        "🥓 Embotits i Formatges": [
+            {
+                "id": "pernil_canaria",
+                "nom": "Pernil Cuit Extra a la Canària",
+                "preu": 18.50,
+                "unitat": "kg",
+                "step": 0.1,
+                "desc": "Tallat prim per a sandvitxos o aperitius, baix en sal.",
+                "img": "https://via.placeholder.com/150/e08b8b/ffffff?text=Pernil+Cuit"
+            },
+            {
+                "id": "botifarra_ou",
+                "nom": "Botifarra d'Ou Artesana",
+                "preu": 13.20,
+                "unitat": "kg",
+                "step": 0.2,
+                "desc": "Recepta tradicional de l'obrador, ideal per a taules d'embotits.",
+                "img": "https://via.placeholder.com/150/e6bf73/333333?text=Botifarra+Ou"
+            }
+        ]
+    }
 
-    # Càlcul del total
-    total_comanda = (cant_pollastre * 9.50) + (cant_gall_dindi * 11.20) + (cant_farcit * 14.80) + (cant_hamb * 1.50) + (cant_croquetes * 0.80) + (cant_ast * 12.50)
+    # Diccionari per guardar les seleccions de quantitat de l'usuari
+    selected_quantities = {}
+
+    # Renderitzat de categories en desplegables (Accordion UX per a mòbils)
+    for category_name, products in catalog.items():
+        with st.expander(category_name, expanded=False):
+            for prod in products:
+                with st.container(border=True):
+                    col_img, col_info = st.columns([1, 2])
+                    
+                    with col_img:
+                        # Imatge optimitzada sense opció de zoom
+                        st.image(prod["img"], use_column_width=True)
+                    
+                    with col_info:
+                        st.markdown(f"**{prod['nom']}**")
+                        st.caption(prod["desc"])
+                        st.markdown(f"**{prod['preu']:.2f} €** / {prod['unitat']}")
+                        
+                        # Selector adaptat al tipus d'unitat (kg decimal o unitat entera)
+                        if prod["unitat"] == "kg":
+                            cant = st.number_input(
+                                f"Quantitat ({prod['unitat']}):",
+                                min_value=0.0,
+                                max_value=20.0,
+                                step=prod["step"],
+                                format="%.1f",
+                                key=prod["id"]
+                            )
+                        else:
+                            cant = st.number_input(
+                                f"Quantitat ({prod['unitat']}):",
+                                min_value=0,
+                                max_value=50,
+                                step=int(prod["step"]),
+                                key=prod["id"]
+                            )
+                        
+                        selected_quantities[prod["nom"]] = {
+                            "cant": cant,
+                            "preu": prod["preu"],
+                            "unitat": prod["unitat"]
+                        }
+
+    # Càlcul automàtic del total
+    total_comanda = sum(
+        item["cant"] * item["preu"] for item in selected_quantities.values()
+    )
 
     st.markdown(f"### 💰 **Total Encàrrec:** `{total_comanda:.2f} €`")
 
