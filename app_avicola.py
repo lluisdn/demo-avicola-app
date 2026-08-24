@@ -25,11 +25,11 @@ if "orders" not in st.session_state:
             "data_recollida": str(date.today()),
             "hora_recollida": "11:30",
             "items": [
-                {"nom": "Cuixetes de Pollastre", "cant": 1.5, "unitat": "kg"},
+                {"nom": "Entrecot de Vedella", "cant": 1.0, "unitat": "kg"},
                 {"nom": "Mandonguilles amb salsa", "cant": 1.0, "unitat": "kg"}
             ],
-            "observacions": "El pollastre tallat a octaus, si us plau.",
-            "total": 28.70,
+            "observacions": " ",
+            "total": 28.00,
             "estat": "En preparació",
             "pagat": True
         }
