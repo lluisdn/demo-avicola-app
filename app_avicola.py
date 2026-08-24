@@ -53,7 +53,7 @@ if modo_vista == "📱 Vista Client":
                 "unitat": "kg",
                 "step": 0.5,
                 "desc": "Pollastre de creixement lent, carn ferm i saborosa ideal per fer al forn o guisat.",
-                "img": "https://www.avicolaserlluis.com/imatges/carn/vedella.jpg"  # Imatge real de la seva web
+                "img": "https://www.avicolaserlluis.com/images/gras%20i%20magre.jpg"  # Imatge real de la seva web
             },
             {
                 "id": "pit_indi",
