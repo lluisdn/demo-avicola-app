@@ -70,7 +70,7 @@ if modo_vista == "📱 Vista Client":
                 "preu": 11.20,
                 "unitat": "kg",
                 "step": 0.1,
-                "desc": "Tallat prim per fer a la planxa, molt baix en greix i proteïna d'alta qualitat.",
+                "desc": "Baix en greix i proteïna d'alta qualitat.",
                 "img": "https://www.avicolaserlluis.com/images/llaminera.jpg"
             },
             {
