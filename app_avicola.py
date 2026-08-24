@@ -232,8 +232,8 @@ if modo_vista == "📱 Vista Client":
 # VISTA 2: BOTIGA / OBRADOR (PANEL INTERN)
 # ==========================================
 else:
-    st.header("👨‍🍳 Panel de Gestió de Comandes — Obrador i Tauler")
-    st.write("Visibilitat en temps real dels encàrrecs rebuts per organitzar la preparació i el tall de la matèria prima.")
+    st.header("👨‍🍳 Panel de Gestió de Comandes")
+    st.write("Visibilitat en temps real dels encàrrecs rebuts.")
 
     if not st.session_state.orders:
         st.info("No hi ha comandes registrades de moment.")
