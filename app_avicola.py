@@ -74,15 +74,16 @@ if modo_vista == "📱 Vista Client":
                 "img": "https://via.placeholder.com/150/d1b89d/333333?text=Conill"
             }
         ],
-        "🧆 Elaborats i Menjar Preparat": [
+        "🧆 Plats Cuinats": [
             {
-                "id": "rodo_farcit",
-                "nom": "Rodó de Gall d'Indi Farcit Tradicional",
+                "id": "ensaladilla",
+                "nom": "Ensaladilla",
                 "preu": 14.80,
                 "unitat": "kg",
-                "step": 0.5,
+                "step": 1,
                 "desc": "Farcit de prunes, pinyons i carn picada. A punt per enfornar.",
-                "img": "https://via.placeholder.com/150/c88e68/ffffff?text=Rodo+Farcit"
+                "img": "hhttps://www.avicolaserlluis.com/images/ensaladilla.jpg"
+                
             },
             {
                 "id": "hamb_alberginia",
