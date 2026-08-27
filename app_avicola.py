@@ -312,14 +312,29 @@ else:
                 st.session_state.orders[real_idx]['estat'] = nou_estat
 
 # ==========================================
-# PEU DE PÀGINA DE PUNTA A PUNTA (ÚLTIM ELEMENT DE LA PÀGINA)
+# PEU DE PÀGINA EN SITUACIÓ ABSOLUTA AL FINAL DE PÀGINA
 # ==========================================
-st.markdown("<br><br>", unsafe_allow_html=True)
-
 footer_html = """
 <style>
-    /* Estén la banda de punta a punta trencant el contenidor centrat de Streamlit */
+    /* 1. Forcem que l'estructura principal de Streamlit ocupi com a mínim el 100% de la pantalla */
+    .stApp {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    /* 2. Forcem que el contingut principal empenyi el peu cap avall del tot */
+    .stApp > header {
+        flex-shrink: 0;
+    }
+    
+    .main {
+        flex: 1 0 auto;
+    }
+
+    /* 3. Estil de la banda de punta a punta */
     .full-width-footer {
+        flex-shrink: 0;
         width: 100vw;
         position: relative;
         left: 50%;
@@ -331,7 +346,7 @@ footer_html = """
         border-top: 1px solid #E2E8F0;
         padding: 16px 24px;
         box-sizing: border-box;
-        margin-top: 40px;
+        margin-top: auto; /* Empeny el peu al final absolut */
     }
 
     .footer-content {
