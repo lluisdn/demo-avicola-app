@@ -310,3 +310,34 @@ else:
                     key=f"estat_{order['id']}"
                 )
                 st.session_state.orders[real_idx]['estat'] = nou_estat
+
+# ==========================================
+# PEU DE PÀGINA / BANDA HORITZONTAL DE CONTACTE
+# ==========================================
+st.markdown("<br><br>", unsafe_allow_html=True)
+
+footer_html = """
+<div style="
+    background-color: #1E293B;
+    color: #F8FAFC;
+    padding: 24px 32px;
+    border-radius: 12px;
+    margin-top: 40px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;">
+        <div>
+            <h4 style="margin: 0 0 6px 0; color: #F1F5F9; font-size: 1.1rem;">🛠️ Desenvolupament i Suport Tècnic</h4>
+            <p style="margin: 0; color: #94A3B8; font-size: 0.9rem;">Desenvolupat per a la gestió digital d'Avícola Serlluis</p>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; font-size: 0.95rem;">
+            <div>👤 <strong>Desenvolupador:</strong> Lluís Deixt Nadal</div>
+            <div>🔗 <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/lluisdeixt/" target="_blank" style="color: #38BDF8; text-decoration: none;">linkedin.com/in/elteuperfil</a></div>
+            <div>✉️ <strong>Email:</strong> lluisdn2000@gmail.com</div>
+            <div>📞 <strong>Telèfon:</strong> 668 83 11 67</div>
+        </div>
+    </div>
+</div>
+"""
+
+st.markdown(footer_html, unsafe_allow_html=True)
