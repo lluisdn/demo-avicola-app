@@ -318,17 +318,21 @@ st.markdown("<br><br>", unsafe_allow_html=True)
 
 footer_html = """
 <div style="
-    background-color: #1E293B;
-    color: #F8FAFC;
-    padding: 24px 32px;
-    border-radius: 12px;
-    margin-top: 40px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #F1F5F9;
+    color: #334155;
+    border-top: 1px solid #E2E8F0;
+    padding: 8px 24px;
+    z-index: 99999;
+    font-size: 0.85rem;
+    box-shadow: 0 -2px 6px rgba(0,0,0,0.04);
 ">
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;">
         <div>
             <h4 style="margin: 0 0 6px 0; color: #F1F5F9; font-size: 1.1rem;">🛠️ Desenvolupament i Suport Tècnic</h4>
-            <p style="margin: 0; color: #94A3B8; font-size: 0.9rem;">Desenvolupat per a la gestió digital d'Avícola Serlluis</p>
         </div>
         <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; font-size: 0.95rem;">
             <div>👤 <strong>Desenvolupador:</strong> Lluís Deixt Nadal</div>
