@@ -6,6 +6,7 @@ from datetime import datetime, date
 st.set_page_config(page_title="Avícola Serlluis — Encàrrecs", page_icon="🍗", layout="wide")
 
 # Estils globalitzats per ajustar les imatges i el peu de pàgina al final absolut
+# Estils globalitzats per ajustar les imatges i el peu de pàgina normal (al final del document)
 st.markdown("""
 <style>
     /* Mida reduïda per a les imatges del catàleg */
@@ -18,29 +19,18 @@ st.markdown("""
         display: block;
     }
 
-    /* Assegurar que el peu de pàgina quedi a baix de tot */
-    .stApp {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
-    .main .block-container {
-        flex: 1 0 auto;
-        padding-bottom: 80px; /* Espai de seguretat per al peu */
-    }
-
-    /* Estil de la banda del peu de pàgina */
+    /* Estil de la banda del peu de pàgina (ara flueix al final de la pàgina) */
     .full-width-footer {
-        position: fixed;
+        position: relative;
+        margin-top: 50px;
         left: 0;
         bottom: 0;
         width: 100%;
         background-color: #F1F5F9;
         color: #334155;
         border-top: 1px solid #E2E8F0;
-        padding: 12px 24px;
+        padding: 16px 24px;
         box-sizing: border-box;
-        z-index: 999;
     }
 
     .footer-content {
