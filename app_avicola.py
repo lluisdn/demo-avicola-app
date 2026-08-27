@@ -5,6 +5,66 @@ from datetime import datetime, date
 # Configuració de la pàgina
 st.set_page_config(page_title="Avícola Serlluis — Encàrrecs", page_icon="🍗", layout="wide")
 
+# Estils globalitzats per ajustar les imatges i el peu de pàgina al final absolut
+st.markdown("""
+<style>
+    /* Mida reduïda per a les imatges del catàleg */
+    .catalog-img img {
+        max-width: 100px !important;
+        max-height: 100px !important;
+        object-fit: cover;
+        border-radius: 8px;
+        margin: 0 auto;
+        display: block;
+    }
+
+    /* Assegurar que el peu de pàgina quedi a baix de tot */
+    .stApp {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    .main .block-container {
+        flex: 1 0 auto;
+        padding-bottom: 80px; /* Espai de seguretat per al peu */
+    }
+
+    /* Estil de la banda del peu de pàgina */
+    .full-width-footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #F1F5F9;
+        color: #334155;
+        border-top: 1px solid #E2E8F0;
+        padding: 12px 24px;
+        box-sizing: border-box;
+        z-index: 999;
+    }
+
+    .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        font-size: 0.85rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+        .footer-content {
+            flex-direction: column;
+            gap: 6px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # Llista de botigues de Terrassa
 BOTIGUES = [
     "C/ Galileu, 113",
@@ -141,17 +201,21 @@ if modo_vista == "📱 Vista Client":
 
     selected_items = []
 
-    for category_name, products in catalog.items():
-        with st.expander(category_name, expanded=False):
+    # Obrim el primer desplegable per defecte (i_cat == 0)
+    for i_cat, (category_name, products) in enumerate(catalog.items()):
+        with st.expander(category_name, expanded=(i_cat == 0)):
             for prod in products:
                 with st.container(border=True):
-                    col_img, col_info = st.columns([1, 2])
+                    # Proporció ajustada [1, 4] per fer la columna de la imatge més petita
+                    col_img, col_info = st.columns([1, 4])
                     
                     with col_img:
+                        st.markdown('<div class="catalog-img">', unsafe_allow_html=True)
                         try:
                             st.image(prod["img"], use_container_width=True)
                         except Exception:
                             st.image("https://placehold.co/150x150/e0e0e0/333333?text=Sense+Imatge", use_container_width=True)
+                        st.markdown('</div>', unsafe_allow_html=True)
                     
                     with col_info:
                         st.markdown(f"**{prod['nom']}**")
@@ -257,12 +321,10 @@ else:
         
         totals_produccio = {}
         for order in comandes_filtrades:
-            # Si la comanda ve en el format nou (llista de diccionaris)
             if isinstance(order['items'], list):
                 for item in order['items']:
                     clau = f"{item['nom']} ({item['unitat']})"
                     totals_produccio[clau] = totals_produccio.get(clau, 0.0) + item['cant']
-            # Control de seguretat per si hi ha comandes en el format antic (diccionari simple)
             elif isinstance(order['items'], dict):
                 for nom, val in order['items'].items():
                     totals_produccio[nom] = totals_produccio.get(nom, "")
@@ -312,64 +374,9 @@ else:
                 st.session_state.orders[real_idx]['estat'] = nou_estat
 
 # ==========================================
-# PEU DE PÀGINA EN SITUACIÓ ABSOLUTA AL FINAL DE PÀGINA
+# PEU DE PÀGINA FIXAT A LA PART INFERIOR
 # ==========================================
 footer_html = """
-<style>
-    /* 1. Forcem que l'estructura principal de Streamlit ocupi com a mínim el 100% de la pantalla */
-    .stApp {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
-
-    /* 2. Forcem que el contingut principal empenyi el peu cap avall del tot */
-    .stApp > header {
-        flex-shrink: 0;
-    }
-    
-    .main {
-        flex: 1 0 auto;
-    }
-
-    /* 3. Estil de la banda de punta a punta */
-    .full-width-footer {
-        flex-shrink: 0;
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-        background-color: #F1F5F9;
-        color: #334155;
-        border-top: 1px solid #E2E8F0;
-        padding: 16px 24px;
-        box-sizing: border-box;
-        margin-top: auto; /* Empeny el peu al final absolut */
-    }
-
-    .footer-content {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-        font-size: 0.85rem;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    @media (max-width: 768px) {
-        .footer-content {
-            flex-direction: column;
-            gap: 8px;
-            text-align: center;
-            font-size: 0.8rem;
-        }
-    }
-</style>
-
 <div class="full-width-footer">
     <div class="footer-content">
         <div>👤 <strong>Desenvolupador:</strong> Lluís Deixt Nadal</div>
