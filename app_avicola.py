@@ -329,6 +329,20 @@ footer_html = """
     z-index: 99999;
     font-size: 0.85rem;
     box-shadow: 0 -2px 6px rgba(0,0,0,0.04);
+
+    /* 2. ESTIL PER A MÒBILS (PANTALLES PETITES) */
+    @media (max-width: 768px) {
+        .custom-footer {
+            position: relative; /* No es queda fix, es veu només quan fas scroll fins al final */
+            margin-top: 40px;
+            background-color: #F8FAFC;
+            color: #334155;
+            border-top: 1px solid #E2E8F0;
+            padding: 16px;
+            font-size: 0.8rem;
+            border-radius: 8px;
+        }
+    }
 ">
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;">
         <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; font-size: 0.95rem;">
