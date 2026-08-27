@@ -325,14 +325,14 @@ footer_html = """
     background-color: #F1F5F9;
     color: #334155;
     border-top: 1px solid #E2E8F0;
-    padding: 8px 24px;
+    padding: 4px 24px;
     z-index: 99999;
     font-size: 0.85rem;
     box-shadow: 0 -2px 6px rgba(0,0,0,0.04);
 ">
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;">
         <div>
-            <h4 style="margin: 0 0 6px 0; color: #F1F5F9; font-size: 1.1rem;">🛠️ Desenvolupament i Suport Tècnic</h4>
+            <strong>🛠️ Desenvolupament & Suport</strong>
         </div>
         <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; font-size: 0.95rem;">
             <div>👤 <strong>Desenvolupador:</strong> Lluís Deixt Nadal</div>
