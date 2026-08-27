@@ -331,9 +331,6 @@ footer_html = """
     box-shadow: 0 -2px 6px rgba(0,0,0,0.04);
 ">
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;">
-        <div>
-            <strong>🛠️ Desenvolupament & Suport</strong>
-        </div>
         <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; font-size: 0.95rem;">
             <div>👤 <strong>Desenvolupador:</strong> Lluís Deixt Nadal</div>
             <div>🔗 <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/lluisdeixt/" target="_blank" style="color: #38BDF8; text-decoration: none;">linkedin.com/in/elteuperfil</a></div>
