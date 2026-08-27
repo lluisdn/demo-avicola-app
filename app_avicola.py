@@ -312,36 +312,26 @@ else:
                 st.session_state.orders[real_idx]['estat'] = nou_estat
 
 # ==========================================
-# PEU DE PÀGINA DE PUNTA A PUNTA (AL FINAL DE LA PÀGINA)
+# PEU DE PÀGINA DE PUNTA A PUNTA (ÚLTIM ELEMENT DE LA PÀGINA)
 # ==========================================
 st.markdown("<br><br>", unsafe_allow_html=True)
 
 footer_html = """
 <style>
-    /* Forcem que el contenidor principal de Streamlit ocupi tota l'alçada i tingui posició relativa */
-    .stApp {
-        position: relative;
-        min-height: 100vh;
-    }
-    
-    /* Afegim espai al final del contingut per evitar encavallaments */
-    .main .block-container {
-        padding-bottom: 80px !important;
-    }
-
-    /* Estil de la banda de punta a punta ancorada al final */
+    /* Estén la banda de punta a punta trencant el contenidor centrat de Streamlit */
     .full-width-footer {
-        position: absolute;
-        bottom: 0;
-        left: 0;
         width: 100vw;
-        margin-left: calc(-50vw + 50%); /* Romp els marges centrats de Streamlit per anar de punta a punta */
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
         background-color: #F1F5F9;
         color: #334155;
         border-top: 1px solid #E2E8F0;
-        padding: 12px 24px;
-        box-shadow: 0 -2px 6px rgba(0,0,0,0.03);
+        padding: 16px 24px;
         box-sizing: border-box;
+        margin-top: 40px;
     }
 
     .footer-content {
@@ -376,4 +366,3 @@ footer_html = """
 """
 
 st.markdown(footer_html, unsafe_allow_html=True)
-                
