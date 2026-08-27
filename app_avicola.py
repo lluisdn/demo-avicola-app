@@ -310,44 +310,54 @@ else:
                     key=f"estat_{order['id']}"
                 )
                 st.session_state.orders[real_idx]['estat'] = nou_estat
-
+                
 # ==========================================
-# PEU DE PÀGINA / BANDA HORITZONTAL DE CONTACTE
+# PEU DE PÀGINA RESPONSIVE (MÒBIL vs DESKTOP)
 # ==========================================
 st.markdown("<br><br>", unsafe_allow_html=True)
 
 footer_html = """
-<div style="
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #F1F5F9;
-    color: #334155;
-    border-top: 1px solid #E2E8F0;
-    padding: 4px 24px;
-    z-index: 99999;
-    font-size: 0.85rem;
-    box-shadow: 0 -2px 6px rgba(0,0,0,0.04);
+<style>
+    /* 1. ESTIL PER A PANTALLES GRANS (ORDINADOR / TAULETA) */
+    @media (min-width: 769px) {
+        .main .block-container {
+            padding-bottom: 60px !important;
+        }
+        .custom-footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #F1F5F9;
+            color: #334155;
+            border-top: 1px solid #E2E8F0;
+            padding: 6px 24px;
+            z-index: 99999;
+            font-size: 0.85rem;
+            box-shadow: 0 -2px 6px rgba(0,0,0,0.04);
+        }
+    }
 
     /* 2. ESTIL PER A MÒBILS (PANTALLES PETITES) */
     @media (max-width: 768px) {
         .custom-footer {
-            position: relative; /* No es queda fix, es veu només quan fas scroll fins al final */
+            position: relative; /* No queda fix, es veu només en fer scroll al final */
             margin-top: 40px;
             background-color: #F8FAFC;
             color: #334155;
             border-top: 1px solid #E2E8F0;
-            padding: 16px;
+            padding: 12px 16px;
             font-size: 0.8rem;
             border-radius: 8px;
         }
     }
-">
-    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;">
-        <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; font-size: 0.95rem;">
+</style>
+
+<div class="custom-footer">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; max-width: 1200px; margin: 0 auto;">
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
             <div>👤 <strong>Desenvolupador:</strong> Lluís Deixt Nadal</div>
-            <div>🔗 <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/lluisdeixt/" target="_blank" style="color: #38BDF8; text-decoration: none;">linkedin.com/in/lluisdeixt</a></div>
+            <div>🔗 <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/lluisdeixt/" target="_blank" style="color: #0284C7; text-decoration: none; font-weight: 500;">lluisdeixt</a></div>
             <div>✉️ <strong>Email:</strong> lluisdn2000@gmail.com</div>
             <div>📞 <strong>Telèfon:</strong> 668 83 11 67</div>
         </div>
