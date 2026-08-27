@@ -333,7 +333,7 @@ footer_html = """
     <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;">
         <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; font-size: 0.95rem;">
             <div>👤 <strong>Desenvolupador:</strong> Lluís Deixt Nadal</div>
-            <div>🔗 <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/lluisdeixt/" target="_blank" style="color: #38BDF8; text-decoration: none;">linkedin.com/in/elteuperfil</a></div>
+            <div>🔗 <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/lluisdeixt/" target="_blank" style="color: #38BDF8; text-decoration: none;">linkedin.com/in/lluisdeixt</a></div>
             <div>✉️ <strong>Email:</strong> lluisdn2000@gmail.com</div>
             <div>📞 <strong>Telèfon:</strong> 668 83 11 67</div>
         </div>
