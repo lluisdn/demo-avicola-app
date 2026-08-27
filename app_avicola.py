@@ -310,59 +310,70 @@ else:
                     key=f"estat_{order['id']}"
                 )
                 st.session_state.orders[real_idx]['estat'] = nou_estat
-                
+
 # ==========================================
-# PEU DE PÀGINA RESPONSIVE (MÒBIL vs DESKTOP)
+# PEU DE PÀGINA DE PUNTA A PUNTA (AL FINAL DE LA PÀGINA)
 # ==========================================
 st.markdown("<br><br>", unsafe_allow_html=True)
 
 footer_html = """
 <style>
-    /* 1. ESTIL PER A PANTALLES GRANS (ORDINADOR / TAULETA) */
-    @media (min-width: 769px) {
-        .main .block-container {
-            padding-bottom: 60px !important;
-        }
-        .custom-footer {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            background-color: #F1F5F9;
-            color: #334155;
-            border-top: 1px solid #E2E8F0;
-            padding: 6px 24px;
-            z-index: 99999;
-            font-size: 0.85rem;
-            box-shadow: 0 -2px 6px rgba(0,0,0,0.04);
-        }
+    /* Forcem que el contenidor principal de Streamlit ocupi tota l'alçada i tingui posició relativa */
+    .stApp {
+        position: relative;
+        min-height: 100vh;
+    }
+    
+    /* Afegim espai al final del contingut per evitar encavallaments */
+    .main .block-container {
+        padding-bottom: 80px !important;
     }
 
-    /* 2. ESTIL PER A MÒBILS (PANTALLES PETITES) */
+    /* Estil de la banda de punta a punta ancorada al final */
+    .full-width-footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%); /* Romp els marges centrats de Streamlit per anar de punta a punta */
+        background-color: #F1F5F9;
+        color: #334155;
+        border-top: 1px solid #E2E8F0;
+        padding: 12px 24px;
+        box-shadow: 0 -2px 6px rgba(0,0,0,0.03);
+        box-sizing: border-box;
+    }
+
+    .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        font-size: 0.85rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
     @media (max-width: 768px) {
-        .custom-footer {
-            position: relative; /* No queda fix, es veu només en fer scroll al final */
-            margin-top: 40px;
-            background-color: #F8FAFC;
-            color: #334155;
-            border-top: 1px solid #E2E8F0;
-            padding: 12px 16px;
+        .footer-content {
+            flex-direction: column;
+            gap: 8px;
+            text-align: center;
             font-size: 0.8rem;
-            border-radius: 8px;
         }
     }
 </style>
 
-<div class="custom-footer">
-    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; max-width: 1200px; margin: 0 auto;">
-        <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
-            <div>👤 <strong>Desenvolupador:</strong> Lluís Deixt Nadal</div>
-            <div>🔗 <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/lluisdeixt/" target="_blank" style="color: #0284C7; text-decoration: none; font-weight: 500;">lluisdeixt</a></div>
-            <div>✉️ <strong>Email:</strong> lluisdn2000@gmail.com</div>
-            <div>📞 <strong>Telèfon:</strong> 668 83 11 67</div>
-        </div>
+<div class="full-width-footer">
+    <div class="footer-content">
+        <div>👤 <strong>Desenvolupador:</strong> Lluís Deixt Nadal</div>
+        <div>🔗 <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/lluisdeixt/" target="_blank" style="color: #0284C7; text-decoration: none; font-weight: 500;">lluisdeixt</a></div>
+        <div>✉️ <strong>Email:</strong> lluisdn2000@gmail.com</div>
+        <div>📞 <strong>Telèfon:</strong> 668 83 11 67</div>
     </div>
 </div>
 """
 
 st.markdown(footer_html, unsafe_allow_html=True)
+                
